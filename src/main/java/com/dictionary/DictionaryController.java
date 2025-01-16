@@ -1,7 +1,5 @@
 package com.dictionary;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,42 +20,38 @@ public class DictionaryController {
     @FXML
     private TextArea resultBox;
 
+    private final String noDefinitionFoundResponse =
+            "{\"title\":\"No Definitions Found\",\"message\":\"Sorry pal, we couldn't find definitions for the word you were looking for.\",\"resolution\":\"You can try the search again at later time or head to the web instead.\"}";
+
     @FXML
     private void onGoClick() {
-        String json = getJSON(searchBox.getText());
+        String text = searchBox.getText();
 
-        System.out.println(json);
-
-        //serialize json string to Word obj...
-
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
-        // mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-
-        try {
-            resultBox.setText("");
-
-            Word[] word = mapper.readValue(json, Word[].class);
-
-            System.out.println(word[0]);
-
-            for (Word w : word) {
-                for (Meaning m : w.getMeanings()) {
-                    resultBox.appendText(m.getDefinitions().getFirst().getDefinition());
-                    /*
-                    for (Definition d : m.getDefinitions()) {
-                        //System.out.println(d.definition);
-                        resultBox.appendText("\n"+d.definition);
-                    }
-
-                     */
-                }
-                resultBox.appendText("\n ");
-            }
-
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+        if (text.isEmpty()) {
+            return;
         }
+
+        String response = getJSON(text);
+
+        if (response.equals(noDefinitionFoundResponse)) {
+            resultBox.appendText("No definition found for your word: " + text);
+            return;
+        }
+
+        Word word = MapJson(response);
+
+        // Display result
+
+        resultBox.setText("");
+        for (Meaning m : word.getMeanings()) {
+            //resultBox.appendText(m.getDefinitions().getFirst().getDefinition());
+            System.out.println(m.toString());
+            for (Definition d : m.getDefinitions()) {
+                //System.out.println(d.definition);
+                resultBox.appendText("\n"+d.getDefinition());
+            }
+        }
+        resultBox.appendText("\n ");
     }
 
     private String getJSON(String word) {
@@ -68,14 +62,30 @@ public class DictionaryController {
                 .build();
 
         HttpClient client = HttpClient.newHttpClient();
-        HttpResponse<String> response = null;
+        HttpResponse<String> response;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
+        }
+        catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
 
         return response.body();
     }
-}
 
+    private Word MapJson(String json) {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
+
+        Word[] word;
+
+        try {
+            word = mapper.readValue(json, Word[].class);
+        }
+        catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        return word[0];
+    }
+}
