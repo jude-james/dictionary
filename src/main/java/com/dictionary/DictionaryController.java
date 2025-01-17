@@ -5,8 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import javafx.scene.text.*;
 
 import java.io.IOException;
 import java.net.URI;
@@ -38,8 +37,8 @@ public class DictionaryController {
         resultBox.getChildren().clear();
 
         if (response.equals(noDefinitionFoundResponse)) {
-            Text noDefFound = new Text("No definition found for your word: " + text);
-            noDefFound.setStyle("-fx-font-weight: regular");
+            Text noDefFound = new Text("No entries found for: " + text);
+            noDefFound.setFont(Font.font("Serif", 18));
             resultBox.getChildren().add(noDefFound);
 
             return;
@@ -50,38 +49,46 @@ public class DictionaryController {
     }
 
     private void DisplayResult(Word word) {
+        // Word
         Text wordText = new Text(word.getWord());
-        wordText.setStyle("-fx-font-weight: regular");
+        wordText.setFont(Font.font("Serif", FontWeight.BOLD, 18));
         resultBox.getChildren().add(wordText);
 
+        // Phonic
         if (word.getPhonetic() != null) {
-            Text PhonicText = new Text(" | " + word.getPhonetic().substring(1, word.getPhonetic().length() - 1) + "\n");
-            PhonicText.setStyle("-fx-font-weight: regular");
-            resultBox.getChildren().add(PhonicText);
+            Text phonicText = new Text(" | " + word.getPhonetic().substring(1, word.getPhonetic().length() - 1) + " | ");
+            phonicText.setFont(Font.font("Serif", 18));
+            resultBox.getChildren().add(phonicText);
         }
+
+        // New line before meanings
+        Text newLineText = new Text("\n");
+        resultBox.getChildren().add(newLineText);
 
         List<Meaning> meanings = word.getMeanings();
         for (int i = 0; i < meanings.size(); i++) {
-            Text partOfSpeechText = new Text("\n" + meanings.get(i).getPartOfSpeech());
-            partOfSpeechText.setStyle("-fx-font-weight: bold");
+            // Verb, noun, etc
+            Text partOfSpeechText = new Text("\n\t" + meanings.get(i).getPartOfSpeech());
+            partOfSpeechText.setFont(Font.font("Serif", FontWeight.BOLD, 18));
             resultBox.getChildren().add(partOfSpeechText);
 
             for (int j = 0; j < meanings.get(i).getDefinitions().size(); j++) {
-                if (meanings.get(i).getDefinitions().size() == 1) {
-                    Text definitionText = new Text("\n\t \n\t\t" + meanings.get(i).getDefinitions().get(j).getDefinition());
-                    definitionText.setStyle("-fx-font-weight: regular");
-                    resultBox.getChildren().add(definitionText);
-                }
-                else {
-                    Text definitionText = new Text("\n\t" + (j+1) + ".\n\t\t" + meanings.get(i).getDefinitions().get(j).getDefinition());
-                    definitionText.setStyle("-fx-font-weight: regular");
-                    resultBox.getChildren().add(definitionText);
+                // Definition
+                if (meanings.get(i).getDefinitions().size() != 1) {
+                    Text numberingText = new Text("\n\t\t" + (j+1) + ".");
+                    numberingText.setFont(Font.font("Serif", 18));
+                    resultBox.getChildren().add(numberingText);
                 }
 
+                Text definitionText = new Text("\n\t\t\t" + meanings.get(i).getDefinitions().get(j).getDefinition());
+                definitionText.setFont(Font.font("Serif", 18));
+                resultBox.getChildren().add(definitionText);
+                
+                // Example quote
                 String example = meanings.get(i).getDefinitions().get(j).getExample();
                 if (example != null) {
-                    Text exampleText = new Text("\n\t\t" + example);
-                    exampleText.setStyle("-fx-font-weight: bold");
+                    Text exampleText = new Text("\n\t\t\t" + example);
+                    exampleText.setFont(Font.font("Serif", FontWeight.BOLD, FontPosture.ITALIC, 16));
                     resultBox.getChildren().add(exampleText);
                 }
             }

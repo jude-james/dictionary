@@ -11,15 +11,15 @@
    <children>
       <Button layoutX="28.0" layoutY="109.0" mnemonicParsing="false" onAction="#onSearchClick" prefHeight="46.0" prefWidth="230.0" text="Search">
          <font>
-            <Font name="SF Mono Regular" size="18.0" />
+            <Font name="Serif Regular" size="18.0" />
          </font></Button>
-      <TextField fx:id="searchBox" layoutX="26.0" layoutY="25.0" prefHeight="65.0" prefWidth="599.0" promptText="Word">
+      <TextField fx:id="searchBox" layoutX="26.0" layoutY="25.0" prefHeight="65.0" prefWidth="599.0" promptText="Type a word to look up...">
          <font>
             <Font name="SF Mono Regular" size="18.0" />
          </font></TextField>
       <ScrollPane layoutX="21.0" layoutY="177.0" prefHeight="398.0" prefWidth="762.0">
          <content>
-            <TextFlow fx:id="resultBox" prefHeight="655.0" prefWidth="744.0" />
+            <TextFlow fx:id="resultBox" prefHeight="655.0" prefWidth="744.0" textAlignment="JUSTIFY" />
          </content>
       </ScrollPane>
    </children>
