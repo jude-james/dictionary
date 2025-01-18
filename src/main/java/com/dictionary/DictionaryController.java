@@ -35,10 +35,12 @@ public class DictionaryController {
         String response = getJSON(text);
 
         resultBox.getChildren().clear();
+        resultBox.setTabSize(3);//TODO Move to start method
 
         if (response.equals(noDefinitionFoundResponse)) {
+            // Serif
             Text noDefFound = new Text("No entries found for: " + text);
-            noDefFound.setFont(Font.font("Serif", 18));
+            noDefFound.setFont(Font.font("Courier New", 18));
             resultBox.getChildren().add(noDefFound);
 
             return;
@@ -51,44 +53,41 @@ public class DictionaryController {
     private void DisplayResult(Word word) {
         // Word
         Text wordText = new Text(word.getWord());
-        wordText.setFont(Font.font("Serif", FontWeight.BOLD, 18));
+        wordText.setFont(Font.font("Courier New", FontWeight.BOLD, 18));
         resultBox.getChildren().add(wordText);
 
         // Phonic
         if (word.getPhonetic() != null) {
             Text phonicText = new Text(" | " + word.getPhonetic().substring(1, word.getPhonetic().length() - 1) + " | ");
-            phonicText.setFont(Font.font("Serif", 18));
+            phonicText.setFont(Font.font("Courier New", 18));
             resultBox.getChildren().add(phonicText);
         }
-
-        // New line before meanings
-        Text newLineText = new Text("\n");
-        resultBox.getChildren().add(newLineText);
 
         List<Meaning> meanings = word.getMeanings();
         for (int i = 0; i < meanings.size(); i++) {
             // Verb, noun, etc
-            Text partOfSpeechText = new Text("\n\t" + meanings.get(i).getPartOfSpeech());
-            partOfSpeechText.setFont(Font.font("Serif", FontWeight.BOLD, 18));
+            Text partOfSpeechText = new Text("\n\n\t" + meanings.get(i).getPartOfSpeech());
+            partOfSpeechText.setFont(Font.font("Courier New", FontWeight.BOLD, 18));
             resultBox.getChildren().add(partOfSpeechText);
 
             for (int j = 0; j < meanings.get(i).getDefinitions().size(); j++) {
-                // Definition
+                // Numbering
                 if (meanings.get(i).getDefinitions().size() != 1) {
                     Text numberingText = new Text("\n\t\t" + (j+1) + ".");
-                    numberingText.setFont(Font.font("Serif", 18));
+                    numberingText.setFont(Font.font("Courier New", 18));
                     resultBox.getChildren().add(numberingText);
                 }
 
+                // Definition
                 Text definitionText = new Text("\n\t\t\t" + meanings.get(i).getDefinitions().get(j).getDefinition());
-                definitionText.setFont(Font.font("Serif", 18));
+                definitionText.setFont(Font.font("Courier New", 18));
                 resultBox.getChildren().add(definitionText);
-                
+
                 // Example quote
                 String example = meanings.get(i).getDefinitions().get(j).getExample();
                 if (example != null) {
                     Text exampleText = new Text("\n\t\t\t" + example);
-                    exampleText.setFont(Font.font("Serif", FontWeight.BOLD, FontPosture.ITALIC, 16));
+                    exampleText.setFont(Font.font("Courier New", FontWeight.BOLD, FontPosture.ITALIC, 16));
                     resultBox.getChildren().add(exampleText);
                 }
             }
