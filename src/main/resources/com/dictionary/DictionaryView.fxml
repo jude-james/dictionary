@@ -19,7 +19,7 @@
          </font></TextField>
       <ScrollPane layoutX="21.0" layoutY="177.0" prefHeight="398.0" prefWidth="762.0">
          <content>
-            <TextFlow fx:id="resultBox" prefHeight="655.0" prefWidth="744.0" />
+            <TextFlow fx:id="resultBox" prefHeight="655.0" prefWidth="1770.0" />
          </content>
       </ScrollPane>
    </children>

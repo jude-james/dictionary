@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5104af88-bee3-4bf3-8425-66f498c940ef" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dictionary/StringWrapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dictionary/DictionaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dictionary/DictionaryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/dictionary/DictionaryView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/dictionary/DictionaryView.fxml" afterDir="false" />
@@ -113,7 +114,9 @@
       <workItem from="1737145290530" duration="1798000" />
       <workItem from="1737161303605" duration="332000" />
       <workItem from="1737205202858" duration="32000" />
-      <workItem from="1737239705759" duration="4209000" />
+      <workItem from="1737239705759" duration="4429000" />
+      <workItem from="1737306734620" duration="6612000" />
+      <workItem from="1737317485323" duration="3650000" />
     </task>
     <servers />
   </component>

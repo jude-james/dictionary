@@ -4,25 +4,38 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.text.*;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class DictionaryController {
+public class DictionaryController implements Initializable {
     @FXML
     private TextField searchBox;
 
     @FXML
     private TextFlow resultBox;
 
+    private StringWrapper definitionWrapper;
+    private StringWrapper exampleWrapper;
+
     private final String noDefinitionFoundResponse =
             "{\"title\":\"No Definitions Found\",\"message\":\"Sorry pal, we couldn't find definitions for the word you were looking for.\",\"resolution\":\"You can try the search again at later time or head to the web instead.\"}";
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        resultBox.setTabSize(3);
+        definitionWrapper = new StringWrapper(60, 1, 3, true);
+        exampleWrapper = new StringWrapper(65, 1, 3, true);
+    }
 
     @FXML
     private void onSearchClick() {
@@ -35,22 +48,20 @@ public class DictionaryController {
         String response = getJSON(text);
 
         resultBox.getChildren().clear();
-        resultBox.setTabSize(3);//TODO Move to start method
 
         if (response.equals(noDefinitionFoundResponse)) {
-            // Serif
             Text noDefFound = new Text("No entries found for: " + text);
-            noDefFound.setFont(Font.font("Courier New", 18));
+            noDefFound.setFont(Font.font("Courier New", 18)); // or Serif
             resultBox.getChildren().add(noDefFound);
 
             return;
         }
 
         Word word = MapJson(response);
-        DisplayResult(word);
+        FormatResult(word);
     }
 
-    private void DisplayResult(Word word) {
+    private void FormatResult(Word word) {
         // Word
         Text wordText = new Text(word.getWord());
         wordText.setFont(Font.font("Courier New", FontWeight.BOLD, 18));
@@ -79,14 +90,14 @@ public class DictionaryController {
                 }
 
                 // Definition
-                Text definitionText = new Text("\n\t\t\t" + meanings.get(i).getDefinitions().get(j).getDefinition());
+                Text definitionText = new Text(definitionWrapper.wrapAndIndent(meanings.get(i).getDefinitions().get(j).getDefinition()));
                 definitionText.setFont(Font.font("Courier New", 18));
                 resultBox.getChildren().add(definitionText);
 
                 // Example quote
                 String example = meanings.get(i).getDefinitions().get(j).getExample();
                 if (example != null) {
-                    Text exampleText = new Text("\n\t\t\t" + example);
+                    Text exampleText = new Text(exampleWrapper.wrapAndIndent(example));
                     exampleText.setFont(Font.font("Courier New", FontWeight.BOLD, FontPosture.ITALIC, 16));
                     resultBox.getChildren().add(exampleText);
                 }
