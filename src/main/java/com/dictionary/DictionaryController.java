@@ -42,6 +42,10 @@ public class DictionaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         resultBox.setTabSize(1);
+        Text initialText = new Text("Type a word to look up...");
+        initialText.setFont(Font.font(fontName, FontWeight.NORMAL, 20));
+        initialText.setFill(Color.WHITE);
+        resultBox.getChildren().add(initialText);
 
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -100,7 +104,7 @@ public class DictionaryController implements Initializable {
         }
         else {
             //TODO loop through phonics phonic if word.getPhonic is null
-            Text phonicText = new Text(" | " + word.getPhonetics().get(1).getText().substring(1, word.getPhonetics().get(1).getText().length() - 1) + " | ");
+            // Text phonicText = new Text(" | " + word.getPhonetics().get(1).getText().substring(1, word.getPhonetics().get(1).getText().length() - 1) + " | ");
         }
 
         List<Meaning> meanings = word.getMeanings();

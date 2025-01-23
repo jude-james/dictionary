@@ -9,11 +9,11 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dictionary.DictionaryController">
    <children>
-      <Button defaultButton="true" layoutX="28.0" layoutY="113.0" mnemonicParsing="false" onAction="#onSearchClick" prefHeight="46.0" prefWidth="230.0" text="Search">
+      <Button fx:id="searchButton" defaultButton="true" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" onAction="#onSearchClick" prefHeight="65.0" prefWidth="79.0" text="🔍">
          <font>
             <Font name="Courier New" size="18.0" />
          </font></Button>
-      <TextField fx:id="searchBox" layoutX="28.0" layoutY="24.0" prefHeight="65.0" prefWidth="599.0" promptText="Type a word to look up...">
+      <TextField fx:id="searchBox" layoutX="107.0" layoutY="24.0" prefHeight="65.0" prefWidth="676.0" promptText="Search">
          <font>
             <Font name="Courier New" size="18.0" />
          </font></TextField>

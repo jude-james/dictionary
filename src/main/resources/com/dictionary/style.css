@@ -5,3 +5,7 @@ TextFlow {
 #anchorPane {
     -fx-background-color: #292628;
 }
+
+#searchButton, #searchBox {
+    -fx-background-color: #cccccc;
+}
