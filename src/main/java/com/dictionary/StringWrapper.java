@@ -6,8 +6,8 @@ public class StringWrapper {
     private final int numIndentations;
     private final boolean includeFirstLine;
 
-    static final private String EMPTY_SPACE_AND_HYPHEN_WITH_DELIMINATOR = "(?<=-)|\\s+";
-    static final private String EMPTY_SPACE = "\\s+";
+    private static final String EMPTY_SPACE_AND_HYPHEN_WITH_DELIMINATOR = "(?<=-)|\\s+";
+    private static final String EMPTY_SPACE = "\\s+";
 
     public StringWrapper(int maxCharacters, int numNewLines, int numIndentations, boolean includeFirstLine) {
         this.maxCharacters = maxCharacters;
