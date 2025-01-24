@@ -2,10 +2,16 @@ TextFlow {
     -fx-background-color: #292628;
 }
 
+ScrollPane {
+    -fx-background-color: transparent;
+}
+
 #anchorPane {
     -fx-background-color: #292628;
 }
 
 #searchButton, #searchBox {
-    -fx-background-color: #cccccc;
+    -fx-border-color: sienna;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
 }

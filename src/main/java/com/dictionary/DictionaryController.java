@@ -97,14 +97,23 @@ public class DictionaryController implements Initializable {
 
         // Phonic
         if (word.getPhonetic() != null) {
-            Text phonicText = new Text(" | " + word.getPhonetic().substring(1, word.getPhonetic().length() - 1) + " | ");
-            phonicText.setFont(Font.font(fontName, 20));
-            phonicText.setFill(Color.WHITE);
-            resultBox.getChildren().add(phonicText);
+            Text phoneticText = new Text(" | " + word.getPhonetic().substring(1, word.getPhonetic().length() - 1) + " | ");
+            phoneticText.setFont(Font.font(fontName, 20));
+            phoneticText.setFill(Color.WHITE);
+            resultBox.getChildren().add(phoneticText);
         }
         else {
-            //TODO loop through phonics phonic if word.getPhonic is null
-            // Text phonicText = new Text(" | " + word.getPhonetics().get(1).getText().substring(1, word.getPhonetics().get(1).getText().length() - 1) + " | ");
+            List<Phonetic> phonetics = word.getPhonetics();
+            for (int i = 0; i < phonetics.size(); i++) {
+                String phonetic = phonetics.get(i).getText();
+                if (phonetic != null) {
+                    Text phoneticText = new Text(" | " + phonetic.substring(1, phonetic.length() - 1) + " | ");
+                    phoneticText.setFont(Font.font(fontName, 20));
+                    phoneticText.setFill(Color.WHITE);
+                    resultBox.getChildren().add(phoneticText);
+                    break;
+                }
+            }
         }
 
         List<Meaning> meanings = word.getMeanings();
@@ -169,6 +178,6 @@ public class DictionaryController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        return word[0];
+        return word[0]; // TODO return full array and show all words if theres more than one
     }
 }

@@ -17,7 +17,7 @@
          <font>
             <Font name="Courier New" size="18.0" />
          </font></TextField>
-      <ScrollPane fx:id="scrollPane" layoutX="21.0" layoutY="177.0" prefHeight="398.0" prefWidth="762.0">
+      <ScrollPane fx:id="scrollPane" layoutX="23.0" layoutY="101.0" prefHeight="479.0" prefWidth="769.0">
          <content>
             <TextFlow fx:id="resultBox" prefHeight="481.0" prefWidth="832.0" />
          </content>
