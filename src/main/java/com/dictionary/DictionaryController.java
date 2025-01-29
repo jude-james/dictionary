@@ -42,7 +42,7 @@ public class DictionaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         resultBox.setTabSize(1);
-        Text initialText = new Text("Type a word to look up...");
+        Text initialText = new Text("\n\nType a word to look up...");
         initialText.setFont(Font.font(fontName, FontWeight.NORMAL, 20));
         initialText.setFill(Color.WHITE);
         resultBox.getChildren().add(initialText);

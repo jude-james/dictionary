@@ -7,8 +7,6 @@
     <list default="true" id="5104af88-bee3-4bf3-8425-66f498c940ef" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dictionary/DictionaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dictionary/DictionaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/dictionary/DictionaryView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/dictionary/DictionaryView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/dictionary/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/dictionary/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +127,9 @@
       <workItem from="1737590103981" duration="1468000" />
       <workItem from="1737632186679" duration="1590000" />
       <workItem from="1737641216437" duration="4161000" />
-      <workItem from="1737719084624" duration="6320000" />
+      <workItem from="1737719084624" duration="6365000" />
+      <workItem from="1737744577785" duration="2820000" />
+      <workItem from="1737805090899" duration="606000" />
     </task>
     <servers />
   </component>
