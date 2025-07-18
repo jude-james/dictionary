@@ -10,8 +10,25 @@ ScrollPane {
     -fx-background-color: #292628;
 }
 
-#searchButton, #searchBox {
-    -fx-border-color: sienna;
-    -fx-text-fill: white;
+#searchButton, #searchBox, #listenButton {
+    -fx-border-radius: 3px;
+    -fx-border-width: 3px;
+    -fx-border-color: #c24e4e;
+    -fx-text-fill: #f7f7f7;
     -fx-background-color: transparent;
+}
+
+#searchButton:hover, #searchBox:hover, #listenButton:hover {
+    -fx-background-color: #5d407a;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 10px;
+    -fx-scale-x: 1.01;
+    -fx-scale-y: 1.1;
+}
+
+#searchButton:pressed, #searchBox:pressed, #listenButton:pressed {
+    -fx-background-color: #492e6b;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 10px;
+    -fx-scale-y: 1.2;
 }

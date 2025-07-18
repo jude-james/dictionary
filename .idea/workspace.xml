@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5104af88-bee3-4bf3-8425-66f498c940ef" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/showcaseWIP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dictionary/DictionaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dictionary/DictionaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/dictionary/DictionaryView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/dictionary/DictionaryView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/dictionary/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/dictionary/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +74,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/main/java/com/dictionary" />
     </key>
@@ -129,7 +136,15 @@
       <workItem from="1737719084624" duration="6365000" />
       <workItem from="1737744577785" duration="2820000" />
       <workItem from="1737805090899" duration="606000" />
-      <workItem from="1738174659415" duration="353000" />
+      <workItem from="1738174659415" duration="410000" />
+      <workItem from="1738541509692" duration="3000" />
+      <workItem from="1744484109952" duration="1305000" />
+      <workItem from="1745842470493" duration="478000" />
+      <workItem from="1750603603950" duration="327000" />
+      <workItem from="1750676556737" duration="1221000" />
+      <workItem from="1750767343759" duration="6159000" />
+      <workItem from="1752788854311" duration="804000" />
+      <workItem from="1752828325980" duration="5136000" />
     </task>
     <servers />
   </component>

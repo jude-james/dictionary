@@ -9,8 +9,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
+import javafx.scene.media.*;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.URI;
 import java.net.URL;
 import java.net.http.HttpClient;
@@ -32,9 +35,13 @@ public class DictionaryController implements Initializable {
     private StringWrapper definitionWrapper;
     private StringWrapper exampleWrapper;
 
-    private String fontName = "Courier New";
-    private String bulletSymbol = "• ";
-    Font font = Font.loadFont("file:src/Serif?.ttf", 22);
+    private final String fontName = "Courier New";
+    private final String bulletSymbol = "• ";
+
+    private final Color primaryColour = Color.rgb(247, 247, 247);
+    private final Color highlightColour = Color.rgb(194, 78, 78);
+
+    private MediaPlayer mediaPlayer = null;
 
     private final String noDefinitionFoundResponse =
             "{\"title\":\"No Definitions Found\",\"message\":\"Sorry pal, we couldn't find definitions for the word you were looking for.\",\"resolution\":\"You can try the search again at later time or head to the web instead.\"}";
@@ -44,7 +51,7 @@ public class DictionaryController implements Initializable {
         resultBox.setTabSize(1);
         Text initialText = new Text("\n\nType a word to look up...");
         initialText.setFont(Font.font(fontName, FontWeight.NORMAL, 20));
-        initialText.setFill(Color.WHITE);
+        initialText.setFill(primaryColour);
         resultBox.getChildren().add(initialText);
 
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -56,9 +63,10 @@ public class DictionaryController implements Initializable {
 
     @FXML
     private void onSearchClick() {
-        String text = searchBox.getText().trim();
-
         resultBox.getChildren().clear();
+        mediaPlayer = null;
+
+        String text = searchBox.getText().trim();
 
         if (text.isEmpty()) {
             return;
@@ -67,7 +75,7 @@ public class DictionaryController implements Initializable {
         if (text.matches(".*[\"\\\\|/^%{}#?<>\\[\\] ].*")) {
             Text noDefFound = new Text("No entries found for: " + text);
             noDefFound.setFont(Font.font(fontName, 18));
-            noDefFound.setFill(Color.WHITE);
+            noDefFound.setFill(primaryColour);
             resultBox.getChildren().add(noDefFound);
 
             return;
@@ -75,10 +83,19 @@ public class DictionaryController implements Initializable {
 
         String response = getJSON(text);
 
+        if (response == null) {
+            Text connectionError = new Text("Connection error. Connect to the internet.");
+            connectionError.setFont(Font.font(fontName, 18));
+            connectionError.setFill(primaryColour);
+            resultBox.getChildren().add(connectionError);
+
+            return;
+        }
+
         if (response.equals(noDefinitionFoundResponse)) {
             Text noDefFound = new Text("No entries found for: " + text);
             noDefFound.setFont(Font.font(fontName, 18));
-            noDefFound.setFill(Color.WHITE);
+            noDefFound.setFill(primaryColour);
             resultBox.getChildren().add(noDefFound);
 
             return;
@@ -88,18 +105,35 @@ public class DictionaryController implements Initializable {
         FormatResult(word);
     }
 
+    @FXML
+    private void OnListenClick() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.seek(Duration.ZERO);
+            mediaPlayer.play();
+        }
+    }
+
     private void FormatResult(Word word) {
+        // Audio
+        String mp3Link = word.getPhonetics().get(0).getAudio(); // might have to loop through
+        if (mp3Link != null && !mp3Link.isEmpty()) {
+            // TODO enable or disable button
+            Media audio = new Media(mp3Link);
+            mediaPlayer = new MediaPlayer(audio);
+        }
+
         // Word
         Text wordText = new Text(word.getWord());
         wordText.setFont(Font.font(fontName, FontWeight.BOLD, 22));
-        wordText.setFill(Color.WHITE);
+        wordText.setFill(primaryColour);
         resultBox.getChildren().add(wordText);
 
         // Phonic
         if (word.getPhonetic() != null) {
             Text phoneticText = new Text(" | " + word.getPhonetic().substring(1, word.getPhonetic().length() - 1) + " | ");
             phoneticText.setFont(Font.font(fontName, 20));
-            phoneticText.setFill(Color.WHITE);
+            phoneticText.setFill(primaryColour);
             resultBox.getChildren().add(phoneticText);
         }
         else {
@@ -109,7 +143,7 @@ public class DictionaryController implements Initializable {
                 if (phonetic != null) {
                     Text phoneticText = new Text(" | " + phonetic.substring(1, phonetic.length() - 1) + " | ");
                     phoneticText.setFont(Font.font(fontName, 20));
-                    phoneticText.setFill(Color.WHITE);
+                    phoneticText.setFill(primaryColour);
                     resultBox.getChildren().add(phoneticText);
                     break;
                 }
@@ -121,14 +155,14 @@ public class DictionaryController implements Initializable {
             // Verb, noun, etc
             Text partOfSpeechText = new Text("\n\n\t" + meanings.get(i).getPartOfSpeech());
             partOfSpeechText.setFont(Font.font(fontName, FontWeight.BOLD, 20));
-            partOfSpeechText.setFill(Color.SIENNA);
+            partOfSpeechText.setFill(highlightColour);
             resultBox.getChildren().add(partOfSpeechText);
 
             for (int j = 0; j < meanings.get(i).getDefinitions().size(); j++) {
                 // Definition
                 Text definitionText = new Text(definitionWrapper.wrapAndIndent(bulletSymbol + meanings.get(i).getDefinitions().get(j).getDefinition()));
                 definitionText.setFont(Font.font(fontName, FontWeight.BOLD,18));
-                definitionText.setFill(Color.WHITE);
+                definitionText.setFill(primaryColour);
                 resultBox.getChildren().add(definitionText);
 
                 // Example quote
@@ -140,7 +174,7 @@ public class DictionaryController implements Initializable {
                 }
 
                 exampleText.setFont(Font.font(fontName, FontPosture.ITALIC, 18));
-                exampleText.setFill(Color.WHITE);
+                exampleText.setFill(primaryColour);
                 resultBox.getChildren().add(exampleText);
             }
         }
@@ -157,6 +191,9 @@ public class DictionaryController implements Initializable {
         HttpResponse<String> response;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        }
+        catch (ConnectException e) {
+            return null;
         }
         catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);

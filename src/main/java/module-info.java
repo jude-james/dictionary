@@ -1,6 +1,7 @@
 module com.dictionary {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
     requires java.net.http;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
