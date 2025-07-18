@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5104af88-bee3-4bf3-8425-66f498c940ef" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/showcaseWIP.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dictionary/DictionaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dictionary/DictionaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/dictionary/DictionaryView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/dictionary/DictionaryView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/dictionary/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/dictionary/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,6 +70,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/main/java/com/dictionary" />
@@ -144,7 +141,7 @@
       <workItem from="1750676556737" duration="1221000" />
       <workItem from="1750767343759" duration="6159000" />
       <workItem from="1752788854311" duration="804000" />
-      <workItem from="1752828325980" duration="5136000" />
+      <workItem from="1752828325980" duration="9608000" />
     </task>
     <servers />
   </component>

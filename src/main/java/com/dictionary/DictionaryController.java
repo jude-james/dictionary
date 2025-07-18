@@ -35,6 +35,13 @@ public class DictionaryController implements Initializable {
     private StringWrapper definitionWrapper;
     private StringWrapper exampleWrapper;
 
+    private final String fontPath = "/fonts/JetBrainsMono/ttf/";
+
+    private final Font regularFont = Font.loadFont(getClass().getResourceAsStream(fontPath + "JetBrainsMono-Regular.ttf"), 18);
+    private final Font boldFont = Font.loadFont(getClass().getResourceAsStream(fontPath + "JetBrainsMono-Bold.ttf"), 18);
+    private final Font italicFont = Font.loadFont(getClass().getResourceAsStream(fontPath + "JetBrainsMono-ThinItalic.ttf"), 18);
+    private final Font wordFont = Font.loadFont(getClass().getResourceAsStream(fontPath + "JetBrainsMono-Bold.ttf"), 22);
+
     private final String fontName = "Courier New";
     private final String bulletSymbol = "• ";
 
@@ -50,7 +57,8 @@ public class DictionaryController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         resultBox.setTabSize(1);
         Text initialText = new Text("\n\nType a word to look up...");
-        initialText.setFont(Font.font(fontName, FontWeight.NORMAL, 20));
+        //initialText.setFont(Font.font(fontName, FontWeight.NORMAL, 20));
+        initialText.setFont(regularFont);
         initialText.setFill(primaryColour);
         resultBox.getChildren().add(initialText);
 
@@ -74,7 +82,8 @@ public class DictionaryController implements Initializable {
 
         if (text.matches(".*[\"\\\\|/^%{}#?<>\\[\\] ].*")) {
             Text noDefFound = new Text("No entries found for: " + text);
-            noDefFound.setFont(Font.font(fontName, 18));
+            //noDefFound.setFont(Font.font(fontName, 18));
+            noDefFound.setFont(regularFont);
             noDefFound.setFill(primaryColour);
             resultBox.getChildren().add(noDefFound);
 
@@ -85,7 +94,8 @@ public class DictionaryController implements Initializable {
 
         if (response == null) {
             Text connectionError = new Text("Connection error. Connect to the internet.");
-            connectionError.setFont(Font.font(fontName, 18));
+            //connectionError.setFont(Font.font(fontName, 18));
+            connectionError.setFont(regularFont);
             connectionError.setFill(primaryColour);
             resultBox.getChildren().add(connectionError);
 
@@ -94,7 +104,8 @@ public class DictionaryController implements Initializable {
 
         if (response.equals(noDefinitionFoundResponse)) {
             Text noDefFound = new Text("No entries found for: " + text);
-            noDefFound.setFont(Font.font(fontName, 18));
+            //noDefFound.setFont(Font.font(fontName, 18));
+            noDefFound.setFont(regularFont);
             noDefFound.setFill(primaryColour);
             resultBox.getChildren().add(noDefFound);
 
@@ -125,14 +136,16 @@ public class DictionaryController implements Initializable {
 
         // Word
         Text wordText = new Text(word.getWord());
-        wordText.setFont(Font.font(fontName, FontWeight.BOLD, 22));
+        //wordText.setFont(Font.font(fontName, FontWeight.BOLD, 22));
+        wordText.setFont(wordFont);
         wordText.setFill(primaryColour);
         resultBox.getChildren().add(wordText);
 
         // Phonic
         if (word.getPhonetic() != null) {
             Text phoneticText = new Text(" | " + word.getPhonetic().substring(1, word.getPhonetic().length() - 1) + " | ");
-            phoneticText.setFont(Font.font(fontName, 20));
+            //phoneticText.setFont(Font.font(fontName, 20));
+            phoneticText.setFont(regularFont);
             phoneticText.setFill(primaryColour);
             resultBox.getChildren().add(phoneticText);
         }
@@ -142,7 +155,8 @@ public class DictionaryController implements Initializable {
                 String phonetic = phonetics.get(i).getText();
                 if (phonetic != null) {
                     Text phoneticText = new Text(" | " + phonetic.substring(1, phonetic.length() - 1) + " | ");
-                    phoneticText.setFont(Font.font(fontName, 20));
+                    //phoneticText.setFont(Font.font(fontName, 20));
+                    phoneticText.setFont(regularFont);
                     phoneticText.setFill(primaryColour);
                     resultBox.getChildren().add(phoneticText);
                     break;
@@ -154,14 +168,16 @@ public class DictionaryController implements Initializable {
         for (int i = 0; i < meanings.size(); i++) {
             // Verb, noun, etc
             Text partOfSpeechText = new Text("\n\n\t" + meanings.get(i).getPartOfSpeech());
-            partOfSpeechText.setFont(Font.font(fontName, FontWeight.BOLD, 20));
+            //partOfSpeechText.setFont(Font.font(fontName, FontWeight.BOLD, 20));
+            partOfSpeechText.setFont(boldFont);
             partOfSpeechText.setFill(highlightColour);
             resultBox.getChildren().add(partOfSpeechText);
 
             for (int j = 0; j < meanings.get(i).getDefinitions().size(); j++) {
                 // Definition
                 Text definitionText = new Text(definitionWrapper.wrapAndIndent(bulletSymbol + meanings.get(i).getDefinitions().get(j).getDefinition()));
-                definitionText.setFont(Font.font(fontName, FontWeight.BOLD,18));
+                //definitionText.setFont(Font.font(fontName, FontWeight.BOLD,18));
+                definitionText.setFont(regularFont);
                 definitionText.setFill(primaryColour);
                 resultBox.getChildren().add(definitionText);
 
@@ -173,7 +189,8 @@ public class DictionaryController implements Initializable {
                     exampleText = new Text(exampleWrapper.wrapAndIndent(example) + "\n");
                 }
 
-                exampleText.setFont(Font.font(fontName, FontPosture.ITALIC, 18));
+                //exampleText.setFont(Font.font(fontName, FontPosture.ITALIC, 18));
+                exampleText.setFont(italicFont);
                 exampleText.setFill(primaryColour);
                 resultBox.getChildren().add(exampleText);
             }

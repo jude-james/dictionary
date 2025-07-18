@@ -11,11 +11,11 @@
    <children>
       <Button fx:id="searchButton" defaultButton="true" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" onAction="#onSearchClick" prefHeight="65.0" prefWidth="79.0" text="⌕">
          <font>
-            <Font name="Courier New" size="30.0" />
+            <Font name="JetBrains Mono" size="30.0" />
          </font></Button>
       <TextField fx:id="searchBox" layoutX="109.0" layoutY="24.0" prefHeight="65.0" prefWidth="583.0" promptText="Search">
          <font>
-            <Font name="Courier New" size="18.0" />
+            <Font name="JetBrains Mono" size="18.0" />
          </font></TextField>
       <ScrollPane fx:id="scrollPane" layoutX="23.0" layoutY="105.0" prefHeight="479.0" prefWidth="769.0">
          <content>
@@ -24,7 +24,7 @@
       </ScrollPane>
       <Button fx:id="listenButton" layoutX="707.0" layoutY="24.0" mnemonicParsing="false" onAction="#OnListenClick" prefHeight="65.0" prefWidth="79.0" text="(🎤︎)">
          <font>
-            <Font name="Courier New" size="18.0" />
+            <Font name="JetBrains Mono" size="18.0" />
          </font>
       </Button>
    </children>

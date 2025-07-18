@@ -1,3 +1,7 @@
+.root {
+    -fx-font-family: "JetBrains Mono";
+}
+
 TextFlow {
     -fx-background-color: #292628;
 }
@@ -11,11 +15,13 @@ ScrollPane {
 }
 
 #searchButton, #searchBox, #listenButton {
-    -fx-border-radius: 3px;
+    -fx-border-radius: 5px;
     -fx-border-width: 3px;
     -fx-border-color: #c24e4e;
     -fx-text-fill: #f7f7f7;
     -fx-background-color: transparent;
+
+    -fx-highlight-fill: black;
 }
 
 #searchButton:hover, #searchBox:hover, #listenButton:hover {
@@ -30,5 +36,5 @@ ScrollPane {
     -fx-background-color: #492e6b;
     -fx-background-radius: 15px;
     -fx-border-radius: 10px;
-    -fx-scale-y: 1.2;
+    -fx-scale-y: 1.175;
 }
