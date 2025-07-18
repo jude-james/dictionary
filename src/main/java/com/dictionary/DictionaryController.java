@@ -167,7 +167,7 @@ public class DictionaryController implements Initializable {
                 String phonetic = phonetics.get(i).getText();
                 if (phonetic != null) {
                     Text phoneticText = new Text(" | " + phonetic.substring(1, phonetic.length() - 1) + " | ");
-                    phoneticText.setFont(regularFont);
+                    phoneticText.setFont(phoneticFont);
                     phoneticText.setFill(primaryColour);
                     resultBox.getChildren().add(phoneticText);
                     break;

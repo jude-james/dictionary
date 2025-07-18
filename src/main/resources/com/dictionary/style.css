@@ -25,7 +25,7 @@ ScrollPane {
 }
 
 #searchButton:hover, #searchBox:hover, #listenButton:hover {
-    -fx-background-color: #5d407a;
+    -fx-background-color: #3a3a87;
     -fx-background-radius: 15px;
     -fx-border-radius: 10px;
     -fx-scale-x: 1.01;
@@ -33,7 +33,7 @@ ScrollPane {
 }
 
 #searchButton:pressed, #searchBox:pressed, #listenButton:pressed {
-    -fx-background-color: #492e6b;
+    -fx-background-color: #2d2c9c;
     -fx-background-radius: 15px;
     -fx-border-radius: 10px;
     -fx-scale-y: 1.175;
