@@ -52,7 +52,7 @@ public class DictionaryController implements Initializable {
 
     private final Color primaryColour = Color.rgb(247, 247, 247);
     private final Color highlightColour = Color.rgb(194, 78, 78);
-    private final Color exampleColour = Color.rgb(196, 167, 227);
+    private final Color exampleColour = Color.rgb(168, 182, 255);
 
     private MediaPlayer mediaPlayer = null;
 
@@ -231,15 +231,15 @@ public class DictionaryController implements Initializable {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 
-        Word[] word;
+        Word[] words;
 
         try {
-            word = mapper.readValue(json, Word[].class);
+            words = mapper.readValue(json, Word[].class);
         }
         catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
 
-        return word[0]; // TODO return full array and show all words if theres more than one
+        return words[0];
     }
 }
