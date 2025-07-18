@@ -14,7 +14,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load());
 
         stage.setScene(scene);
-        stage.setTitle("SimpleDict");
+        stage.setTitle("Mini Dictionary");
         stage.setResizable(false);
 
         stage.show();
