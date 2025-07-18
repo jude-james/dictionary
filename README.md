@@ -4,7 +4,7 @@
 
 A simple dictionary app, allowing you to search for words and listen to their pronunciation, with a minimal colourful theme.
 
-Uses the [Free dictionary API](https://github.com/meetDeveloper/freeDictionaryAPI) and the Java Jackson library to serialise JSON strings into objects.
+Uses the [free dictionary API](https://github.com/meetDeveloper/freeDictionaryAPI) and the Java Jackson library to serialise JSON strings into objects.
 
 ## How To Run
 
