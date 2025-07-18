@@ -1,3 +1,2 @@
-Working on a lightweight dictionary app
+# README
 
-![alt text](https://github.com/jude-james/dictionary/blob/main/showcaseWIP.png)
